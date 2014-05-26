@@ -1,0 +1,11 @@
+package minecraft2d;
+
+public enum BlockType {
+	STONE("res/images/stone.png"),AIR("res/images/stone.png"),GRASS("res/images/stone.png"),DIRTY("res/images/stone.png");
+	public final String location;
+	public final Texture texture;
+	BlockType(String location){
+		this.location=location;
+		
+	}
+}

@@ -1,0 +1,7 @@
+package minecraft2d;
+
+import static minecraft2d.World.*;
+
+public class BlockGrid {
+	Block blocks[][] = new Block[BLOCKS_WIDTH][BLOCKS_H];
+}

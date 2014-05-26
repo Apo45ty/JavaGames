@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Extract method &apos;public void clear()&apos; from &apos;minecraft2d.BlockGrid.BlockGrid()&apos; to &apos;minecraft2d.BlockGrid&apos;&#x0D;&#x0A;- Original project: &apos;SampleGame01&apos;&#x0D;&#x0A;- Method name: &apos;clear&apos;&#x0D;&#x0A;- Destination type: &apos;minecraft2d.BlockGrid&apos;&#x0D;&#x0A;- Declared visibility: &apos;public&apos;" comments="false" description="Extract method &apos;clear&apos;" destination="0" exceptions="false" flags="786434" id="org.eclipse.jdt.ui.extract.method" input="/src&lt;minecraft2d{BlockGrid.java" name="clear" replace="false" selection="571 155" stamp="1401077911271" version="1.0" visibility="1"/>
+</session>
