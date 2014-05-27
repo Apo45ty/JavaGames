@@ -1,5 +1,7 @@
 package minecraft2d;
 
+import game.engine.PhysicsObject;
+
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
@@ -9,7 +11,27 @@ import org.newdawn.slick.opengl.Texture;
 import org.newdawn.slick.opengl.TextureLoader;
 
 public enum BlockType {
-	STONE("res/images/stone.png"),AIR("res/images/air.png"),GRASS("res/images/grass.png"),DIRT("res/images/dirt.png");
+	STONE("res/images/stone.png") {
+		@Override
+		public Texture getTexture(TimeEvent time, int health) {
+			return texture;
+		}
+	},AIR("res/images/air.png") {
+		@Override
+		public Texture getTexture(TimeEvent time, int health) {
+			return texture;
+		}
+	},GRASS("res/images/grass.png") {
+		@Override
+		public Texture getTexture(TimeEvent time, int health) {
+			return texture;
+		}
+	},DIRT("res/images/dirt.png") {
+		@Override
+		public Texture getTexture(TimeEvent time, int health) {
+			return texture;
+		}
+	};
 	public final String location;
 	public Texture texture;
 	
@@ -32,4 +54,7 @@ public enum BlockType {
 		}
 		this.texture = result;
 	}
+
+	public abstract Texture getTexture(TimeEvent time, int health);
+
 }

@@ -1,0 +1,7 @@
+package game.engine;
+
+public abstract class GameObject {
+	public GameObject() {
+		// TODO Auto-generated constructor stub
+	}
+}

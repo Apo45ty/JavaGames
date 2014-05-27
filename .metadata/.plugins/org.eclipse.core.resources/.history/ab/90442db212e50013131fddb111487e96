@@ -1,0 +1,25 @@
+package gameengine.runners;
+
+import static org.lwjgl.opengl.GL11.*;
+
+public class ThreeGameTest {
+	public static void main(String[] args) {
+		init();
+		gameLoop();
+		quit();
+	}
+
+	private static void init() {
+		// TODO Auto-generated method stub
+	}
+	private static void quit() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	private static void gameLoop() {
+		// TODO Auto-generated method stub
+		while(Display.)
+	}
+
+}

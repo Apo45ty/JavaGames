@@ -1,0 +1,46 @@
+package minecraft2d;
+
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
+import javax.swing.Timer;
+
+public class World {
+	public static final int BLOCK_SIZE = 32;
+	public static final int BLOCKS_WIDTH = 24, BLOCKS_HEIGHT =20;
+ 	public static final String saveFile = "res/worlds/world01.xml";
+ 	public static final int GAME_HOURS_IN_MILIS = 1000;
+ 	public static final int DAY_DURATION=16;
+ 	public static final int NIGHT_DURATION=24-DAY_DURATION;
+ 	public static final float changeForDayNight = 0.5f;
+	public static final float NIGHT_INCREMENT = 2*changeForDayNight/(24 - DAY_DURATION);
+	public static final float DAY_INCREMENT = 2*-1*changeForDayNight/DAY_DURATION;
+	public static float DAY_OPACITY = 0f;
+	public static int tick = 0;
+	public static boolean paused= false;
+ 	public static Timer timer = new Timer(GAME_HOURS_IN_MILIS,new ActionListener() {
+ 		private float change;
+		@Override
+		public void actionPerformed(ActionEvent arg0) {
+			if (paused)
+				return;
+			if (tick % 24 == NIGHT_DURATION) {
+				change = DAY_INCREMENT;
+			} else if (tick % 24 == NIGHT_DURATION/2) {
+				change = 0;//Stay at this level of darkness
+			} else if (tick % 24 == NIGHT_DURATION+DAY_DURATION/2) {
+				change = 0;//Stay at this level of darkness
+			} else if (tick % 24 == 0) {
+				change = NIGHT_INCREMENT; //Set the sun
+				tick = 0;
+			}
+			tick++;
+			DAY_OPACITY += change;
+			System.out.println(DAY_OPACITY);
+		}
+	});
+ 	
+ 	public static void init(){
+ 		timer.start();
+ 	}
+}

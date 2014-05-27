@@ -31,17 +31,23 @@ public class BlockGrid {
 	}
 	
 	public void setAt(int x,int y,BlockType b){
+		if(x>BLOCKS_WIDTH-1||y>BLOCKS_HEIGHT-1){
+			return;
+		}
 		blocks[x][y] = new Block(b,x*BLOCK_SIZE,y*BLOCK_SIZE);
 	}
 	
 	public Block getAt(int x,int y){
+		if(x>BLOCKS_WIDTH-1||y>BLOCKS_HEIGHT-1||x<0||y<0){
+			return null;
+		}
 		return blocks[x][y];
 	}
 	
-	public void draw(){
+	public void draw(int translate_x, int translate_y){
 		for(int x=0;x<BLOCKS_WIDTH;x++)
 			for(int y=0;y<BLOCKS_HEIGHT;y++)
-				blocks[x][y].draw();
+				blocks[x][y].draw(translate_x,translate_y);
 	}
 	
 	public void load(File loadFile){

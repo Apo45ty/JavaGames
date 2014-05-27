@@ -1,22 +1,31 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <qualifiedTypeNameHistroy>
-<fullyQualifiedTypeName name="org.lwjgl.opengl.DisplayMode"/>
-<fullyQualifiedTypeName name="org.lwjgl.opengl.Display"/>
 <fullyQualifiedTypeName name="org.newdawn.slick.opengl.TextureLoader"/>
 <fullyQualifiedTypeName name="java.io.FileInputStream"/>
 <fullyQualifiedTypeName name="java.io.File"/>
-<fullyQualifiedTypeName name="minecraft2d.Block"/>
 <fullyQualifiedTypeName name="minecraft2d.BlockGrid"/>
-<fullyQualifiedTypeName name="org.lwjgl.input.Mouse"/>
 <fullyQualifiedTypeName name="org.newdawn.slick.opengl.Texture"/>
 <fullyQualifiedTypeName name="org.jdom2.Element"/>
 <fullyQualifiedTypeName name="org.jdom2.Document"/>
 <fullyQualifiedTypeName name="org.jdom2.output.XMLOutputter"/>
 <fullyQualifiedTypeName name="java.io.FileOutputStream"/>
-<fullyQualifiedTypeName name="minecraft2d.World"/>
-<fullyQualifiedTypeName name="org.lwjgl.input.Keyboard"/>
 <fullyQualifiedTypeName name="org.jdom2.input.SAXBuilder"/>
 <fullyQualifiedTypeName name="javax.swing.JOptionPane"/>
-<fullyQualifiedTypeName name="org.lwjgl.opengl.GL11"/>
 <fullyQualifiedTypeName name="minecraft2d.BlockType"/>
+<fullyQualifiedTypeName name="minecraft2d.Block"/>
+<fullyQualifiedTypeName name="org.lwjgl.input.Keyboard"/>
+<fullyQualifiedTypeName name="org.lwjgl.input.Mouse"/>
+<fullyQualifiedTypeName name="java.awt.Font"/>
+<fullyQualifiedTypeName name="org.newdawn.slick.Color"/>
+<fullyQualifiedTypeName name="game.engine.GameObject"/>
+<fullyQualifiedTypeName name="minecraft2d.TimeEvent"/>
+<fullyQualifiedTypeName name="minecraft2d.TimeListener"/>
+<fullyQualifiedTypeName name="game.engine.PhysicsObject"/>
+<fullyQualifiedTypeName name="minecraft2d.World"/>
+<fullyQualifiedTypeName name="java.awt.event.ActionListener"/>
+<fullyQualifiedTypeName name="javax.swing.Timer"/>
+<fullyQualifiedTypeName name="org.lwjgl.Sys"/>
+<fullyQualifiedTypeName name="org.lwjgl.opengl.DisplayMode"/>
+<fullyQualifiedTypeName name="org.lwjgl.opengl.Display"/>
+<fullyQualifiedTypeName name="org.lwjgl.opengl.GL11"/>
 </qualifiedTypeNameHistroy>

@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Move element &apos;res&apos; to &apos;SampleGame02&apos;&#x0D;&#x0A;- Original project: &apos;SampleGame02&apos;&#x0D;&#x0A;- Destination element: &apos;SampleGame02&apos;&#x0D;&#x0A;- Original element: &apos;res&apos;&#x0D;&#x0A;- Update references to refactored element" description="Move folder" destination="=SampleGame02" element1="lib/res" files="0" flags="589830" folders="1" id="org.eclipse.jdt.ui.move" policy="org.eclipse.jdt.ui.moveResources" qualified="false" references="true" stamp="1401134380860" units="0" version="1.0"/>
+</session>
