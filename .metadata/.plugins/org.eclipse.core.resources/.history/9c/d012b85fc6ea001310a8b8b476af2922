@@ -1,0 +1,63 @@
+package game.engine;
+
+import static minecraft2d.World.BLOCK_SIZE;
+import static org.lwjgl.opengl.GL11.GL_QUADS;
+import static org.lwjgl.opengl.GL11.glBegin;
+import static org.lwjgl.opengl.GL11.glEnd;
+import static org.lwjgl.opengl.GL11.glLoadIdentity;
+import static org.lwjgl.opengl.GL11.glTexCoord2f;
+import static org.lwjgl.opengl.GL11.glTranslatef;
+import static org.lwjgl.opengl.GL11.glVertex2f;
+
+import org.newdawn.slick.opengl.Texture;
+
+public class TempSprite implements PlayerSprite {
+	private static final int NUMBER_OF_LIMBS = 20;
+	private static Texture[] player = new Texture[NUMBER_OF_LIMBS];
+	
+	public TempSprite(String... spriteFolderPathAndXMLFile) {
+		String[] parts =
+			{
+				"Belly.png",
+				"Chest.png",
+				"ChestPlate.png",
+				"Eyes.png",
+				"Eyes02.png",
+				"Head.png",
+				"Hips.png",
+				"LeftFoot.png",
+				"LeftForearm.png",
+				"LeftHand.png",
+				"LeftKnee.png",
+				"LeftLeg.png",
+				"LeftShoulder.png",
+				"Pants.png",
+				"RightFoot.png",
+				"RightForearm.png",
+				"RightHand.png",
+				"RightKnee.png",
+				"RightLeg.png",
+				"RightShoulder.png"
+			};
+	}
+	public TempSprite(String spriteFilePath,String xmlFile) {
+		//TODO
+	}
+	
+	public void Draw() {
+		player.bind();
+		glLoadIdentity();
+		glTranslatef(0, 0, 0);
+		glBegin(GL_QUADS);
+			glTexCoord2f(player_x_dir ,0);
+			glVertex2f(player_x-BLOCK_SIZE,player_y-BLOCK_SIZE*2);
+			glTexCoord2f(1-player_x_dir,0);
+			glVertex2f(player_x,player_y-BLOCK_SIZE*2);
+			glTexCoord2f(1-player_x_dir, 1);
+			glVertex2f(player_x, player_y);
+			glTexCoord2f(player_x_dir, 1);
+			glVertex2f(player_x-BLOCK_SIZE, player_y);
+		glEnd();
+		glLoadIdentity();
+	}
+}

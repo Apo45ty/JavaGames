@@ -1,0 +1,76 @@
+package game.engine;
+
+import static minecraft2d.World.BLOCK_SIZE;
+import org.newdawn.slick.opengl.Texture;
+import org.newdawn.slick.opengl.TextureLoader;
+import static org.lwjgl.opengl.GL11.*;
+
+public class TempSprite implements PlayerSprite {
+	private static final int NUMBER_OF_LIMBS = 20;
+	private static Texture Belly;
+	private static Texture Chest;
+	private static Texture ChestPlate;
+	private static Texture Eyes;
+	private static Texture Eyes02;
+	private static Texture Head;
+	private static Texture Hips;
+	private static Texture LeftFoot;
+	private static Texture LeftForearm;
+	private static Texture LeftHand;
+	private static Texture LeftKnee;
+	private static Texture LeftLeg;
+	private static Texture LeftShoulder;
+	private static Texture Pants;
+	private static Texture RightFoot;
+	private static Texture RightForearm;
+	private static Texture RightHand;
+	private static Texture RightKnee;
+	private static Texture RightLeg;
+	private static Texture RightShoulder;;
+	
+	public TempSprite(String... spriteFolderPathAndXMLFile) {
+		String[] parts =
+			{
+				"Belly.png",
+				"Chest.png",
+				"ChestPlate.png",
+				"Eyes.png",
+				"Eyes02.png",
+				"Head.png",
+				"Hips.png",
+				"LeftFoot.png",
+				"LeftForearm.png",
+				"LeftHand.png",
+				"LeftKnee.png",
+				"LeftLeg.png",
+				"LeftShoulder.png",
+				"Pants.png",
+				"RightFoot.png",
+				"RightForearm.png",
+				"RightHand.png",
+				"RightKnee.png",
+				"RightLeg.png",
+				"RightShoulder.png"
+			};
+	}
+	public TempSprite(String spriteFilePath,String xmlFile) {
+		//TODO
+	}
+	
+	public void Draw() {
+		player.bind();
+		glLoadIdentity();
+		glTranslatef(0, 0, 0);
+		glBegin(GL_QUADS);
+			glTexCoord2f(player_x_dir ,0);
+			glVertex2f(player_x-BLOCK_SIZE,player_y-BLOCK_SIZE*2);
+			glTexCoord2f(1-player_x_dir,0);
+			glVertex2f(player_x,player_y-BLOCK_SIZE*2);
+			glTexCoord2f(1-player_x_dir, 1);
+			glVertex2f(player_x, player_y);
+			glTexCoord2f(player_x_dir, 1);
+			glVertex2f(player_x-BLOCK_SIZE, player_y);
+		glEnd();
+		glLoadIdentity();
+	}
+}

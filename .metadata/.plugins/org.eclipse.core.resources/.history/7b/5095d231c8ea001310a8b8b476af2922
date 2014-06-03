@@ -1,0 +1,8 @@
+package game.engine;
+
+import org.newdawn.slick.opengl.Texture;
+
+public class SpritePart {
+	public int x,y;
+	public String name;
+}

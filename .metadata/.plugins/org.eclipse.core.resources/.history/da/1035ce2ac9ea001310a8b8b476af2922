@@ -1,0 +1,80 @@
+package game.engine;
+
+import static minecraft2d.World.BLOCK_SIZE;
+
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+
+import org.newdawn.slick.opengl.Texture;
+import org.newdawn.slick.opengl.TextureLoader;
+
+import static org.lwjgl.opengl.GL11.*;
+
+public class TempSprite implements Sprite, AnimatableObject {
+	int x,y;
+	SpritePart[] parts;
+	
+	public TempSprite(String spriteFolderPath,File XMLFile) {
+		String[] parts =
+			{
+				"Belly.png",
+				"Chest.png",
+				"ChestPlate.png",
+				"Eyes.png",
+				"Eyes02.png",
+				"Head.png",
+				"Hips.png",
+				"LeftFoot.png",
+				"LeftForearm.png",
+				"LeftHand.png",
+				"LeftKnee.png",
+				"LeftLeg.png",
+				"LeftShoulder.png",
+				"Pants.png",
+				"RightFoot.png",
+				"RightForearm.png",
+				"RightHand.png",
+				"RightKnee.png",
+				"RightLeg.png",
+				"RightShoulder.png"
+			};
+		this.parts = new SpritePart[parts.length];
+		for(int i=0;i<parts.length;i++){
+			try {
+				this.parts[i] =new Temp()
+						TextureLoader.getTexture("PNG", new FileInputStream(
+						new File(parts[i])));
+			} catch (FileNotFoundException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+		
+		
+	}
+	public TempSprite(String spriteFilePath,String xmlFile) {
+		//TODO
+	}
+	
+	public void Draw() {
+		player.bind();
+		glLoadIdentity();
+		glTranslatef(0, 0, 0);
+		glBegin(GL_QUADS);
+			glTexCoord2f(player_x_dir ,0);
+			glVertex2f(player_x-BLOCK_SIZE,player_y-BLOCK_SIZE*2);
+			glTexCoord2f(1-player_x_dir,0);
+			glVertex2f(player_x,player_y-BLOCK_SIZE*2);
+			glTexCoord2f(1-player_x_dir, 1);
+			glVertex2f(player_x, player_y);
+			glTexCoord2f(player_x_dir, 1);
+			glVertex2f(player_x-BLOCK_SIZE, player_y);
+		glEnd();
+		glLoadIdentity();
+	}
+}

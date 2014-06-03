@@ -1,7 +1,5 @@
 package minecraft2d;
 
-import game.engine.PhysicsObject;
-
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;

@@ -1,0 +1,169 @@
+package game.engine;
+
+import static minecraft2d.World.BLOCK_SIZE;
+
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+
+import org.newdawn.slick.opengl.Texture;
+import org.newdawn.slick.opengl.TextureLoader;
+
+import static org.lwjgl.opengl.GL11.*;
+
+public class TempSprite implements Sprite, AnimatableObject {
+	int x,y,width,height;
+	SpritePart[] parts;
+	
+	public TempSprite(String spriteFolderPath, String[] partName,String XMLFile,int width,int height, int x, int y) {
+		this.width = width;
+		this.height = height;
+		String[] partNames =
+			{
+				"Belly.png",
+				"Chest.png",
+				"ChestPlate.png",
+				"Eyes.png",
+				"Eyes02.png",
+				"Head.png",
+				"Hips.png",
+				"LeftFoot.png",
+				"LeftForearm.png",
+				"LeftHand.png",
+				"LeftKnee.png",
+				"LeftLeg.png",
+				"LeftShoulder.png",
+				"Pants.png",
+				"RightFoot.png",
+				"RightForearm.png",
+				"RightHand.png",
+				"RightKnee.png",
+				"RightLeg.png",
+				"RightShoulder.png"
+			};
+		partName = partNames;
+		this.parts = new SpritePart[partName.length];
+		for(int i=0;i<partName.length;i++){
+			try {
+				this.parts[i] =new SpritePartTest();
+				((SpritePartTest)this.parts[i]).texture =
+						TextureLoader.getTexture("PNG", new FileInputStream(
+						new File(spriteFolderPath+partName[i])));
+				this.parts[i].name = partName[i].split(".png")[0];
+				switch(partName[i]){
+				case "Belly.png":
+					this.parts[i].relX = 7;
+					this.parts[i].relY = 31;
+					break;
+				case "Chest.png":
+					this.parts[i].relX = 5;
+					this.parts[i].relY = 22;
+					break;
+				case "ChestPlate.png":
+					this.parts[i].relX = 0;
+					this.parts[i].relY = 16;
+					break;
+				case "Eyes.png":
+					this.parts[i].relX = 15;
+					this.parts[i].relY = 17;
+					break;
+				case "Eyes02.png":
+					this.parts[i].relX = 15;
+					this.parts[i].relY = 17;
+					break;
+				case "Head.png":
+					this.parts[i].relX = 12;
+					this.parts[i].relY = 13;
+					break;
+				case "Hips.png":
+					this.parts[i].relX = 9;
+					this.parts[i].relY = 36;
+					break;
+				case "LeftFoot.png":
+					this.parts[i].relX = 16;
+					this.parts[i].relY = 62;
+					break;
+				case "LeftForearm.png":
+					this.parts[i].relX = 20;
+					this.parts[i].relY = 30;
+					break;
+				case "LeftHand.png":
+					this.parts[i].relX = 18;
+					this.parts[i].relY = 36;
+					break;
+				case "LeftKnee.png":
+					this.parts[i].relX = 18;
+					this.parts[i].relY = 41;
+					break;
+				case "LeftLeg.png":
+					this.parts[i].relX = 19;
+					this.parts[i].relY = 52;
+					break;
+				case "LeftShoulder.png":
+					this.parts[i].relX = 22;
+					this.parts[i].relY = 23;
+					break;
+				case "Pants.png":
+					this.parts[i].relX = 8;
+					this.parts[i].relY = 36;
+					break;
+				case "RightFoot.png":
+					this.parts[i].relX = 7;
+					this.parts[i].relY = 62;
+					break;
+				case "RightForearm.png":
+					this.parts[i].relX = 3;
+					this.parts[i].relY = 30;
+					break;
+				case "RightHand.png":
+					this.parts[i].relX = 1;
+					this.parts[i].relY = 36;
+					break;
+				case "RightKnee.png":
+					this.parts[i].relX = 10;
+					this.parts[i].relY = 41;
+					break;
+				case "RightLeg.png":
+					this.parts[i].relX = 10;
+					this.parts[i].relY = 52;
+					break;
+				case "RightShoulder.png":
+					this.parts[i].relX = 5;
+					this.parts[i].relY = 23;
+					break;
+				}
+			} catch (FileNotFoundException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+		
+		
+	}
+	public TempSprite(String spriteFilePath,String xmlFile) {
+		//TODO
+	}
+	
+	public void Draw() {
+		for(int i=0;i<parts.length;i++){
+			parts[i].bind();
+			glLoadIdentity();
+			glTranslatef(x, y, 0);
+			glBegin(GL_QUADS);
+				glTexCoord2f(0,0);
+				glVertex2f(,);
+				glTexCoord2f(1,0);
+				glVertex2f(,);
+				glTexCoord2f(1, 1);
+				glVertex2f(,);
+				glTexCoord2f(0, 1);
+				glVertex2f(,);
+			glEnd();
+			glLoadIdentity();
+		}
+	}
+}
