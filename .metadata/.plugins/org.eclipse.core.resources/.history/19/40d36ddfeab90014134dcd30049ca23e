@@ -1,0 +1,26 @@
+package gameengine.runners;
+
+public class Player extends GameObject implements AnimatableObject,
+		TimeListener, PhysicsObject {
+	public Player() {
+		super();
+	}
+
+	@Override
+	public void newHourEvent(TimeEvent e) {
+		// TODO Auto-generated method stub
+	}
+
+	@Override
+	public void newYearEvent(TimeEvent e) {
+		// TODO Auto-generated method stub
+
+	}
+
+	@Override
+	public void newDayEvent(TimeEvent e) {
+		// TODO Auto-generated method stub
+
+	}
+
+}

@@ -1,5 +1,5 @@
 /**
- * Project: SampleGame01
+f * Project: SampleGame01
  * Package: game.engine
  * Author: EltonJohn
  * Date: May 23, 2014
@@ -394,6 +394,7 @@ public class Main {
 	
 	public static void main(String[] args) {
 		createDisplay();
+		System.out.println("Open GL Version: "+GL11.glGetString(GL11.GL_VERSION));
 		gameLoop();
 		quit();
 	}

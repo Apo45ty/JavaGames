@@ -1,7 +1,0 @@
-package minecraft2d;
-
-public class TimeEvent {
-	public int day;
-	public int year;
-	public int hour;
-}

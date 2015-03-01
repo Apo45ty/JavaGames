@@ -28,4 +28,13 @@
 <fullyQualifiedTypeName name="org.lwjgl.opengl.DisplayMode"/>
 <fullyQualifiedTypeName name="org.lwjgl.opengl.Display"/>
 <fullyQualifiedTypeName name="org.lwjgl.opengl.GL11"/>
+<fullyQualifiedTypeName name="org.lwjgl.input.Controllers"/>
+<fullyQualifiedTypeName name="game.engine.SpritePart"/>
+<fullyQualifiedTypeName name="game.engine.SpritePartTest"/>
+<fullyQualifiedTypeName name="twitter4j.Query"/>
+<fullyQualifiedTypeName name="gameengine.runners.ThreeGameTest"/>
+<fullyQualifiedTypeName name="gameengine.runners.CollisionObject"/>
+<fullyQualifiedTypeName name="java.awt.Rectangle"/>
+<fullyQualifiedTypeName name="java.util.List"/>
+<fullyQualifiedTypeName name="gameengine.runners.PhysicsObject"/>
 </qualifiedTypeNameHistroy>

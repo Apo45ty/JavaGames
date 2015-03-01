@@ -1,7 +1,0 @@
-package SpritePart;
-
-import org.newdawn.slick.opengl.Texture;
-
-public class SpritePartTest extends SpritePart{
-	private static Texture texture;
-}

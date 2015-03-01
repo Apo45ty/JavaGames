@@ -1,0 +1,31 @@
+package gameengine.runners;
+
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.IOException;
+
+import org.newdawn.slick.opengl.Texture;
+import org.newdawn.slick.opengl.TextureLoader;
+
+public class Sprite {
+	public static Texture player;
+	
+	public static void setTexture(String playerPath){
+		try {
+			player = TextureLoader.getTexture("PNG", new FileInputStream(
+					new File(playerPath)));
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+	public static void setXMLMap(){
+		
+	}
+	public static void setJasonMap(){
+		
+	}
+	public static void draw(){
+		
+	}
+}
