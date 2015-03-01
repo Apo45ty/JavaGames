@@ -1,7 +1,0 @@
-package gameengine.runners;
-
-import java.awt.Rectangle;
-
-public interface CollisionObject {
-	public Rectangle getBoundingBox();
-}
