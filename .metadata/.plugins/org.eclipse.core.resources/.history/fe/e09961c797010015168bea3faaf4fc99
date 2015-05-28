@@ -1,0 +1,25 @@
+/**
+ * 
+ */
+package com.apo45ty.flappy.graphics;
+
+import com.apo45ty.flappy.utils.*;
+import static org.lwjgl.opengl.GL20.*;
+
+public class Shader {
+	
+	private final int ID;
+	
+	public Shader(String vertex, String fragment) {
+		ID = ShaderUtils.load(vertex, fragment);
+	}
+	
+	public void enable() {
+		glUseProgram(ID);
+	}
+	
+	public void disable() {
+		glUseProgram(0);
+	}
+	
+}

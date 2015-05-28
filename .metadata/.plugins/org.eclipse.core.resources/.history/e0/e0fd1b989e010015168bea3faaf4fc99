@@ -1,0 +1,9 @@
+package com.apo45ty.flappy.level;
+
+public class Level {
+
+	public Level() {
+		// TODO Auto-generated constructor stub
+	}
+
+}

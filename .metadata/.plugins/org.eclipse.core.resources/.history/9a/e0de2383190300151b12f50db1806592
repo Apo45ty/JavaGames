@@ -1,0 +1,15 @@
+package com.apo45ty.minefront;
+
+public class Game {
+public long Time;
+	public Game() {
+		// TODO Auto-generated constructor stub
+	}
+	public void tick() {
+		if(Time*-1L>0){
+			Time=0;
+		}
+		Time++;
+	}
+
+}

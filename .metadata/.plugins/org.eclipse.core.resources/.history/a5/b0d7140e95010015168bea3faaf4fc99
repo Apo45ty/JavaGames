@@ -1,0 +1,12 @@
+package com.apo45ty.flappy.utils;
+
+public class ShaderUtils {
+	
+	private ShaderUtils() {
+	}
+	
+	public static int load(String verPath,String fragPath) {
+		String vert = FileUtils.loadAsString(verPath);
+		String frag = FileUtils.loadAsString(fragPath);
+	}
+}

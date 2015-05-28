@@ -1,0 +1,19 @@
+/**
+ * 
+ */
+package com.apo45ty.flappy.graphics;
+
+/**
+ * @author EltonJohn
+ *
+ */
+public class Shader {
+
+	/**
+	 * 
+	 */
+	public Shader() {
+		// TODO Auto-generated constructor stub
+	}
+
+}

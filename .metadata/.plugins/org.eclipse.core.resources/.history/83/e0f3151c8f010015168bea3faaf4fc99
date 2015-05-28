@@ -1,0 +1,5 @@
+package com.apo45ty.flappy.math;
+
+public class Vector3f {
+
+}

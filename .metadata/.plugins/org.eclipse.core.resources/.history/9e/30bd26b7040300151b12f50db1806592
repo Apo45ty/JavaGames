@@ -1,0 +1,9 @@
+package com.apo45ty.minefront.graphics;
+
+public class Render {
+
+	public Render() {
+		// TODO Auto-generated constructor stub
+	}
+
+}

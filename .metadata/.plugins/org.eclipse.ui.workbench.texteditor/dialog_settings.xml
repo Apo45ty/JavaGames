@@ -2,37 +2,37 @@
 <section name="Workbench">
 	<section name="org.eclipse.ui.texteditor.FindReplaceDialog">
 		<item value="false" key="isRegEx"/>
-		<item value="static" key="selection"/>
+		<item value="sin" key="selection"/>
 		<item value="false" key="casesensitive"/>
 		<item value="false" key="incremental"/>
 		<item value="true" key="wrap"/>
 		<item value="false" key="wholeword"/>
 		<list key="findhistory">
-			<item value="static"/>
-			<item value="key_skip_count"/>
-			<item value="universe"/>
-			<item value="next_game_tick"/>
-			<item value="player"/>
-			<item value="BLOCK_SIZE"/>
-			<item value=";"/>
-			<item value="done"/>
+			<item value="sin"/>
+			<item value="sint"/>
+			<item value="cos"/>
+			<item value="2"/>
+			<item value="arg0"/>
+			<item value="FLOOR_DISTANCE"/>
+			<item value="CEILING_HEIGHT"/>
+			<item value="game.Time"/>
 		</list>
 		<list key="replacehistory">
-			<item value=""/>
-			<item value="PLAYER_SIZE"/>
-			<item value="public"/>
-			<item value="*SCALE;"/>
-			<item value="this.parts[i]"/>
-			<item value="temp"/>
-			<item value="/"/>
-			<item value="&quot;:break;"/>
+			<item value="sin"/>
+			<item value="cos"/>
+			<item value="sint"/>
+			<item value="2.0"/>
+			<item value="event"/>
+			<item value="floD"/>
+			<item value="double floD"/>
+			<item value="celH"/>
 		</list>
 	</section>
 	<section name="org.eclipse.ui.texteditor.FindReplaceDialog_dialogBounds">
 		<item value="257" key="DIALOG_WIDTH"/>
 		<item value="1|Segoe UI|9.0|0|WINDOWS|1|-12|0|0|0|400|0|0|0|1|0|0|0|0|Segoe UI" key="DIALOG_FONT_NAME"/>
 		<item value="380" key="DIALOG_HEIGHT"/>
-		<item value="8" key="DIALOG_X_ORIGIN"/>
-		<item value="300" key="DIALOG_Y_ORIGIN"/>
+		<item value="-151" key="DIALOG_X_ORIGIN"/>
+		<item value="206" key="DIALOG_Y_ORIGIN"/>
 	</section>
 </section>

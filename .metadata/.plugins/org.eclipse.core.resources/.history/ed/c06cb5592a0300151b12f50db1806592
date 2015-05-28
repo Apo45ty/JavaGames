@@ -1,0 +1,19 @@
+package com.apo45ty.minefront;
+
+import java.awt.event.*;
+
+public class Game {
+	public static final int TICK_INCREMENT = 3;
+	public long Time;
+	
+	public Game() {
+	}
+	public void tick(boolean[] key) {
+		if(Time*-1L>0){
+			Time=0;
+		}
+		Time+=TICK_INCREMENT;
+		boolean forward = key[KeyEvent.VX_W];
+	}
+
+}

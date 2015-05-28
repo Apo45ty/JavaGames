@@ -1,0 +1,5 @@
+package com.apo45ty.flappy.input;
+
+public class Input extends GLFWKeyCallback {
+
+}

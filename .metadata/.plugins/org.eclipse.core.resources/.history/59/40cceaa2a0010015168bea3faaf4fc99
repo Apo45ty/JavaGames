@@ -1,0 +1,15 @@
+package com.apo45ty.flappy.level;
+
+import com.apo45ty.flappy.graphics.*;
+
+public class Level {
+
+	private VertexArray background;
+	
+	public Level() {
+		float vertices = new float[]{
+				-16.0f
+		};
+	}
+
+}

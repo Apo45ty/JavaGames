@@ -1,0 +1,17 @@
+package com.apo45ty.flappy.graphics;
+import static org.lwjgl.opengl.GL11.*;
+import static org.lwjgl.opengl.GL15.*;
+import static org.lwjgl.opengl.GL30.*;
+
+public class VertexArray {
+	
+	private int vao,vbo,ibo,tco;// GL objects
+	private int count;
+	
+	public VertexArray(float[] vertices,byte[] indices, float[] textureCoordinates) {
+		count = indices.length;
+		vao = glGenVertexArrays();
+		
+	}
+
+}

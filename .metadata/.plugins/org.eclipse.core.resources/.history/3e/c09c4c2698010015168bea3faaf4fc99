@@ -1,0 +1,47 @@
+/**
+ * 
+ */
+package com.apo45ty.flappy.graphics;
+
+import java.util.*;
+
+import com.apo45ty.flappy.utils.*;
+
+import static org.lwjgl.opengl.GL20.*;
+
+public class Shader {
+	
+	private final int ID;
+	
+	private Map<String, Integer> locationCache = new HashMap<String, Integer>();
+	
+	public Shader(String vertex, String fragment) {
+		ID = ShaderUtils.load(vertex, fragment);
+	}
+	
+	public int getUniform(String name){
+		//Cache for GPU values
+		if(locationCache.containsKey(name)){
+			return locationCache.get(name);
+		}
+		//Fetch the GPU value
+		int result = glGetUniformLocation(ID,name);
+		if(result == -1){
+			System.err.println("Could not find uniform variable"+name+"!");
+		}
+		return result;
+	}
+	
+	public void setUniform1i(String name, int value){
+		glUniform1i(getUniform(name), value);
+	}
+	
+	public void enable() {
+		glUseProgram(ID);
+	}
+	
+	public void disable() {
+		glUseProgram(0);
+	}
+	
+}

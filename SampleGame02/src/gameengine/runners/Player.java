@@ -11,6 +11,7 @@ public class Player extends GameObject implements AnimatableObject,
 	public boolean isJumping;
 	public long lastJumpUpdate =0;
 	public long jumpStart =0;
+	private boolean canBeAppliedVerticalForce;
 	public Player(Universe universe) {
 		super(universe);
 	}
@@ -54,7 +55,23 @@ public class Player extends GameObject implements AnimatableObject,
 
 	@Override
 	public boolean canBeAppliedVerticalForce() {
-		return !isJumping;
+		return !isJumping||canBeAppliedVerticalForce;
+	}
+
+	@Override
+	public boolean isFloor() {
+		return false;
+	}
+
+	@Override
+	public boolean isFloor(boolean setValue) {
+		return false;
+	}
+
+	@Override
+	public boolean canBeAppliedVerticalForce(boolean setvalue) {
+		canBeAppliedVerticalForce=setvalue;
+		return canBeAppliedVerticalForce;
 	}
 
 }

@@ -5,6 +5,8 @@ import java.awt.Rectangle;
 public class DirtBlock extends GameObject implements CollisionObject,
 		TimeListener {
 
+	private boolean floor = true;
+
 	public DirtBlock(Universe universe) {
 		super(universe);
 		// TODO Auto-generated constructor stub
@@ -41,6 +43,20 @@ public class DirtBlock extends GameObject implements CollisionObject,
 	@Override
 	public boolean isMobableByCollision() {
 		return false;
+	}
+
+	@Override
+	public boolean isFloor() {
+		// TODO Auto-generated method stub
+		return floor;
+	}
+
+	@Override
+	public boolean isFloor(boolean setValue) {
+		// TODO Auto-generated method stub
+		
+		floor  = setValue;
+		return floor;
 	}
 
 }

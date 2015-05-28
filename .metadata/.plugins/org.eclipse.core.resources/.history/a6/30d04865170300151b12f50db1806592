@@ -1,0 +1,9 @@
+package com.apo45ty.minefront;
+
+public class Game {
+
+	public Game() {
+		// TODO Auto-generated constructor stub
+	}
+
+}

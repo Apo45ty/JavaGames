@@ -1,0 +1,40 @@
+package com.apo45ty.minefront.input;
+
+public class Controller {
+	private static int CONTROLS_INVERTED = 1; // 1 == right goes right
+	public static double ROTATION_SPEED=0.0005*CONTROLS_INVERTED,WALK_SPEED=0.2,X_MOVE_SPEED=1;
+	public double x, z, y,rotation,xa,za, rotationa;
+	public static boolean turnLeft = false,turnRight =false;
+	public void tick(boolean forward,boolean backward,boolean left,boolean right,boolean turnleft,boolean turnright,boolean jumping){
+		double zMove =0,xMove=0;
+		turnleft=turnleft||turnLeft;
+		turnright=turnright||turnRight;
+		if(forward){
+			xMove++;
+		}
+		if(backward){
+			xMove--;
+		}
+		if(right){
+			zMove+=X_MOVE_SPEED;
+		}
+		if(left){
+			zMove-=X_MOVE_SPEED;
+		}
+		if(turnleft){
+			rotationa-=ROTATION_SPEED;
+		}
+		if(turnright){
+			rotationa+=ROTATION_SPEED;
+		}
+		
+		xa += (xMove*Math.cos(rotation)+zMove*Math.sin(rotation))*WALK_SPEED;
+		za += (zMove*Math.cos(rotation)-xMove*Math.sin(rotation))*WALK_SPEED;
+		x += xa;
+		z += za;
+		xa *= 0.1;
+		za *= 0.1;
+		rotation += rotationa;
+		rotationa *= 0.8;
+	}
+}

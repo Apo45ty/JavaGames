@@ -1,0 +1,150 @@
+package com.apo45ty.minefront.graphics;
+
+import java.util.*;
+
+import com.apo45ty.minefront.*;
+import com.apo45ty.minefront.input.*;
+
+public class Render3D extends Render {
+	public static final double RENDER_FAR_DISTANCE = 10000;
+	public static final boolean SHARP_RENDER_CUTOFF = false;
+	public double CEILING_HEIGHT = 80;
+	public double FLOOR_DISTANCE = 8;
+	public double[] zBuffer;
+	private double RUNNING_EXTRA_WABLE;
+	private double forward,right,cos,sin,up;
+	
+	public Render3D(int width, int height) {
+		super(width, height);
+		zBuffer = new double[width*height];
+	}
+	
+	public void floor(Game game){
+		forward = game.controls.z;
+		right = game.controls.x;
+		double rotation = game.controls.rotation;
+		if(Controller.idle)
+			rotation += Math.sin(game.Time/400.0)*0.1;
+		
+		cos = Math.cos(rotation);
+		sin = Math.sin(rotation);
+		//double up = Math.sin(game.Time/700.0)*2;
+		up = Math.sin(game.controls.y);
+		double wableEffect  = Math.sin(game.Time/(70.0)*0.5);
+		if(Controller.crouchWalking)
+			wableEffect  = Math.sin(game.Time/(100.0))*0.3;
+		if(Controller.running)
+			wableEffect  = Math.sin(game.Time)*0.7;
+		for(int y=0;y<height;y++){
+			double ceiling = (y -height /2.0) / height;	
+			double z = (FLOOR_DISTANCE+up) / ceiling;
+			if(Controller.walking)
+			 z = (FLOOR_DISTANCE+up+wableEffect) / ceiling;
+			if(ceiling < 0 ){
+				z = (CEILING_HEIGHT -up)/ -ceiling;
+				if(Controller.walking)
+					z = (CEILING_HEIGHT -up -wableEffect)/ -ceiling;
+			}
+			for(int x=0;x<width;x++){
+				double xDepth = (x - width /2.0) / height ;
+				xDepth *= z;
+				int xX = (int)((xDepth*cos-z*sin)+forward);
+				int yY = (int)((z*cos+xDepth*sin)+right);
+				zBuffer[x+y*width] = z;
+				pixels[x+y*width] = Texture.floor.pixels[(xX&7)+(yY&7)*Texture.floor.length];//((xX&15)*16)|((yY&15)*16) << 8;
+				
+				if(SHARP_RENDER_CUTOFF&& z > RENDER_FAR_DISTANCE ){
+						pixels[x+y*width] = 0;
+				}
+			}
+		}
+		
+	}
+	
+	public void wall(double xLeft,double xRight, double zDistance,double yHeight){
+		double xcLeft = (xLeft - right) *2;
+		double zcLeft = (zDistance - forward)*2;
+		
+		double rotLeftSideX =  xcLeft * cos - zcLeft *sin;
+		double yCornerTL = (-yHeight - up)*2;
+		double yCornerBL = ((+0.5 -yHeight )- up)*2;
+		double rotLeftSideZ =  zcLeft * cos + xcLeft *sin;
+		
+		double xcRight = (xRight - right) *2;
+		double zcRight = (zDistance - forward)*2;
+		
+		double rotRightSideX = xcRight = xcRight * cos - zcRight *sin;
+		double yCornerTR = (-yHeight - up)*2;
+		double yCornerBR = ((+0.5 -yHeight )- up)*2;
+		double rotRightSideZ =  zcRight * cos + xcRight *sin;
+		
+		double xPixelLeft = (rotLeftSideX/rotLeftSideZ*height +width/2);
+		double xPixelRight = (rotRightSideX/rotRightSideZ*height +width/2);
+		
+		if(xPixelLeft<=xPixelRight)
+			return; //dont draw wall
+		
+		int xPixelLefti=(int)xPixelLeft;
+		int xPixelRighti=(int)xPixelRight;
+		
+		if(xPixelLefti<0){
+			xPixelLefti =0;
+		}
+		if(xPixelRighti>width){
+			xPixelRighti =width;
+		}
+		
+		
+		
+		double yPixelLeftTop = (int) (yCornerTL / rotLeftSideZ *height +height /2);
+		double yPixelLeftBot = (int) (yCornerBL / rotLeftSideZ *height +height /2);
+		double yPixelRightTop = (int) (yCornerTR / rotRightSideZ *height +height /2);
+		double yPixelRightBot = (int) (yCornerBR / rotRightSideZ *height +height /2);
+		
+		for(int x=xPixelLefti;x<xPixelRighti;x++){
+			double pixelRotation = (x -xPixelLeft) / (xPixelRight - xPixelLeft);
+			
+			double yPixelTop = yPixelLeftTop + (yPixelRightTop - yPixelLeftTop)*pixelRotation;
+			double yPixelBot = yPixelLeftBot + (yPixelRightBot - yPixelLeftBot)*pixelRotation;
+			
+			int yPixelTopi = (int)yPixelTop;
+			int yPixelBoti = (int)yPixelBot;
+			
+			if(yPixelTopi<0){
+				yPixelTopi=0;
+			}
+			
+			if(yPixelBoti>height){
+				yPixelBoti = height;
+			}
+			
+			for(int y=yPixelTopi;y<yPixelBoti;y++){
+				pixels[x+y*width]=0xFFFF;
+				zBuffer[x+y*width] = pixels[x+y*width];
+			}
+		}
+		
+		
+	}
+	
+	public void renderDistanceLimeter(){
+		for(int i=0;i<width*height;i++){
+			int colour = pixels[i];
+			int brightness = (int)(RENDER_FAR_DISTANCE/zBuffer[i]);
+			if(brightness<0){
+				brightness = 0;
+			}
+			if(brightness>255)
+				brightness = 255;
+			int r = (colour >>16) & 0xff;
+			int g = (colour >> 8 ) & 0xff;
+			int b = (colour) & 0xff;
+			
+			r = r * brightness /255;
+			g = g * brightness /255;
+			b = b * brightness /255;
+			
+			pixels[i] = r << 16 |  g<< 8 |b;
+		}
+	}
+}

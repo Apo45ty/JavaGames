@@ -1,0 +1,16 @@
+package com.apo45ty.minefront;
+
+public class Game {
+	public static final int TICK_INCREMENT = 3;
+	public long Time;
+	
+	public Game() {
+	}
+	public void tick() {
+		if(Time*-1L>0){
+			Time=0;
+		}
+		Time+=TICK_INCREMENT;
+	}
+
+}

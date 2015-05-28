@@ -1,0 +1,15 @@
+package com.apo45ty.minefront.graphics;
+
+public class Render {
+	public final int width,height;
+	public final int[] pixels;
+
+	public Render(int width, int height) {
+		super();
+		this.width = width;
+		this.height = height;
+		pixels = new int[width*height];
+	}
+	
+	
+}

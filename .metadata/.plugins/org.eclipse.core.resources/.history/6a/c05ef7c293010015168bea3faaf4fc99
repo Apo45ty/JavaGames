@@ -1,0 +1,5 @@
+package com.apo45ty.flappy.utils;
+
+public class BufferUtils {
+
+}

@@ -1,0 +1,23 @@
+package com.apo45ty.minefront.graphics;
+
+import java.awt.image.*;
+import java.io.*;
+
+import javax.imageio.*;
+
+public class Texture {
+	public static Render floor = loadBitmap("/res/floor.png");
+	
+	public static Render loadBitmap(String filePath){
+		Render result = null;
+		try{
+			BufferedImage image = ImageIO.read(Texture.class.getResource(filePath));
+			int width = image.getWidth();
+			int heigh = image.getHeight();
+			
+		}catch(IOException e){
+			e.printStackTrace();
+		}
+		return result;
+	}
+}

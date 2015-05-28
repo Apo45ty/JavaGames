@@ -27,6 +27,7 @@ import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import javax.swing.JOptionPane;
@@ -113,7 +114,7 @@ public class ThreeGameTest {
 
 		player.setTexture(playerPath);
 		player.TEXTURE_SIZE = PLAYER_SIZE;
-		player.update(PLAYER_SIZE,PLAYER_SIZE, 0);
+		player.update(PLAYER_SIZE, PLAYER_SIZE, 0);
 		System.out.println(player.getBoundingBox());
 		for (int c = 0; c < Controllers.getControllerCount(); c++) {
 			Controller control = Controllers.getController(c);
@@ -126,11 +127,11 @@ public class ThreeGameTest {
 				System.out.println(control.getAxisName(i));
 			}
 		}
-		for(int i=0;i<10;i++){
+		for (int i = 0; i < 10; i++) {
 			DirtBlock block = new DirtBlock(universe);
 			block.setTexture(dirtPath);
 			block.TEXTURE_SIZE = PLAYER_SIZE;
-			block.update(i*PLAYER_SIZE+PLAYER_SIZE,480-PLAYER_SIZE, 0);
+			block.update(i * PLAYER_SIZE + PLAYER_SIZE, 480 - PLAYER_SIZE, 0);
 			level1.add(block);
 		}
 		universe.init();
@@ -192,11 +193,13 @@ public class ThreeGameTest {
 	}
 
 	private static void update_game() {
-		if(player.isJumping){		
-			player.update(player.player_x, player.player_y - player.jumpHeight/10, player.player_x_dir);
+		if (player.isJumping) {
+			player.update(player.player_x, player.player_y - player.jumpHeight
+					/ 10, player.player_x_dir);
 			player.lastJumpUpdate = getMilis();
-			if(Math.abs((double)(player.lastJumpUpdate-player.jumpRizeTimeInMilis-player.jumpStart))<100){
-				player.isJumping=false;
+			if (Math.abs((double) (player.lastJumpUpdate
+					- player.jumpRizeTimeInMilis - player.jumpStart)) < 100) {
+				player.isJumping = false;
 			}
 		}
 	}
@@ -239,7 +242,7 @@ public class ThreeGameTest {
 
 	private static void drawLevel() {
 		// TODO Auto-generated method stub
-		for(GameObject obj1:level1){
+		for (GameObject obj1 : level1) {
 			obj1.draw();
 		}
 	}
@@ -284,8 +287,8 @@ public class ThreeGameTest {
 	 */
 	public static void input() {
 		if (Keyboard.isKeyDown(Keyboard.KEY_O)) {
-			pause = !pause ;
-			universe.paused = pause;
+			pause = !pause;
+			// universe.pause();
 		}
 		if (pause)
 			return;
@@ -316,25 +319,30 @@ public class ThreeGameTest {
 					continue;// Ignore duplicate events, eat away duplicates
 				}
 				// Keyboard
-				if (Keyboard.isKeyDown(Keyboard.KEY_SPACE)&&!player.isJumping) {
+				if (Keyboard.isKeyDown(Keyboard.KEY_SPACE) && !player.isJumping) {
 					player.isJumping = true;
-					player.lastJumpUpdate = player.jumpStart= getMilis();
-					player.update(player.player_x, player.player_y - player.jumpHeight/10, player.player_x_dir);
+					player.lastJumpUpdate = player.jumpStart = getMilis();
+					player.update(player.player_x, player.player_y
+							- player.jumpHeight / 10, player.player_x_dir);
 				}
 				if (Keyboard.isKeyDown(Keyboard.KEY_UP)) {
-					player.update(player.player_x, player.player_y - player.jumpHeight, player.player_x_dir);
+					player.update(player.player_x, player.player_y
+							- player.jumpHeight, player.player_x_dir);
 					player_y_dir = 1;
 				}
 				if (Keyboard.isKeyDown(Keyboard.KEY_DOWN)) {
-					player.update(player.player_x, player.player_y + player.movementSpeed, player.player_x_dir);
+					player.update(player.player_x, player.player_y
+							+ player.movementSpeed, player.player_x_dir);
 					player_y_dir = -1;
 				}
 				if (Keyboard.isKeyDown(Keyboard.KEY_LEFT)) {
-					player.update(player.player_x-player.movementSpeed, player.player_y, 0);
-					
+					player.update(player.player_x - player.movementSpeed,
+							player.player_y, 0);
+
 				}
 				if (Keyboard.isKeyDown(Keyboard.KEY_RIGHT)) {
-					player.update(player.player_x+player.movementSpeed, player.player_y, 1);	
+					player.update(player.player_x + player.movementSpeed,
+							player.player_y, 1);
 				}
 
 				if (key == Keyboard.KEY_P) {
@@ -380,8 +388,8 @@ public class ThreeGameTest {
 		glEnable(GL_BLEND);
 		font.drawString(0, 0, "FPS: " + fpsCount, Color.white);
 		font.drawString(0, 10, "VSync: " + (vsync ? "ON" : "OFF"), Color.white);
-		font.drawString(0, 20, "Player Position (" + player.player_x + "," + player.player_y
-				+ ")");
+		font.drawString(0, 20, "Player Position (" + player.player_x + ","
+				+ player.player_y + ")");
 		font.drawString(0, 30, "Interpolation " + interpolation);
 	}
 
@@ -460,6 +468,65 @@ public class ThreeGameTest {
 			System.out.println("Unable to setup mode " + width + "x" + height
 					+ " fullscreen=" + fullscreen + e);
 		}
+	}
+
+	/****************************
+	 * Constants for the logger *
+	 ****************************/
+	/*****************************************************************/
+	final static String TEST1 = "test1";
+	final static String UNIVERSE_COLLISION = "Universe/Collison";
+	static boolean isInit = false;
+	/*****************************************************************/
+
+	private static final String[] tags_a = { }; // Cant pass
+	private static final String[] sub_tags_a = {};
+	// get free pass even if tag is blocked
+	public static List<String> banned_tags = new ArrayList<String>();
+	public static ArrayList<String> sup_tags = new ArrayList<String>();
+
+	public static void initLogger() {
+		while (!isInit) {
+			for (int i = 0; i < tags_a.length; i++) {
+				String tag_0 = tags_a[i];
+				banned_tags.add(tag_0);
+			}
+			for (int j = 0; j < sub_tags_a.length; j++) {
+				String tag_1 = sub_tags_a[j];
+				sup_tags.add(tag_1);
+			}
+			isInit = true;
+		}
+		return;
+	}
+
+	public static void addSupTag(String suptag) {
+		sup_tags.add(suptag);
+	}
+
+	public static void forbidTag(String tag) {
+		banned_tags.add(tag);
+	}
+
+	public static void logger(String tag, String subtag, String string2) {
+		initLogger();// wi
+		boolean isBannable = true;
+		for (int i = 0; i < sup_tags.size(); i++) {
+			String tag_0 = sup_tags.get(i);
+			if (tag_0.equalsIgnoreCase(tag) || tag_0.equalsIgnoreCase(subtag)) {
+				isBannable = false;
+			}
+		}
+		if (isBannable) {
+			for (int i = 0; i < banned_tags.size(); i++) {
+				String tag_0 = banned_tags.get(i);
+				if (tag_0.equalsIgnoreCase(tag)
+						|| tag_0.equalsIgnoreCase(subtag)) {
+					return; // tag is banned
+				}
+			}
+		}
+		System.out.println("[" + (new Date()) + "]" + string2);
 	}
 
 }

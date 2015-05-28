@@ -1,10 +1,4 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <typeInfoHistroy>
-<typeInfo handle="=SampleGame02/src&lt;gameengine.runners{AnimatableObject.java[AnimatableObject" modifiers="513" timestamp="1424536485489"/>
-<typeInfo handle="=SampleGame02/src&lt;gameengine.runners{PhysicsObject.java[PhysicsObject" modifiers="513" timestamp="1424561496357"/>
-<typeInfo handle="=SampleGame02/src&lt;gameengine.runners{Sprite.java[Sprite" modifiers="1025" timestamp="1424562585509"/>
-<typeInfo handle="=SampleGame02/src&lt;gameengine.runners{GameObject.java[GameObject" modifiers="1025" timestamp="1424540404673"/>
-<typeInfo handle="=SampleGame02/src&lt;gameengine.runners{CollisionObject.java[CollisionObject" modifiers="513" timestamp="1424559143768"/>
-<typeInfo handle="=SampleGame02/C:\/Program Files\/Java\/jre8\/lib\/rt.jar&lt;java.util(Collection.class[Collection" modifiers="1537" timestamp="1396325971793"/>
-<typeInfo handle="=SampleGame02/src&lt;gameengine.runners{TimeListener.java[TimeListener" modifiers="513" timestamp="1424536251296"/>
+<typeInfo handle="=Minefront/src&lt;com.apo45ty.minefront.graphics{Render.java[Render" modifiers="1" timestamp="1432614573127"/>
 </typeInfoHistroy>

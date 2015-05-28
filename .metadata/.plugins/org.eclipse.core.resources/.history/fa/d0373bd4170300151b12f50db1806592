@@ -1,0 +1,12 @@
+package com.apo45ty.minefront;
+
+public class Game {
+public int Time;
+	public Game() {
+		// TODO Auto-generated constructor stub
+	}
+	public void tick() {
+		Time++;
+	}
+
+}

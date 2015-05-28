@@ -1,0 +1,9 @@
+package com.apo45ty.flappy.graphics;
+
+public class VertexArray {
+
+	public VertexArray() {
+		// TODO Auto-generated constructor stub
+	}
+
+}

@@ -1,0 +1,164 @@
+package com.apo45ty.minefront;
+
+import java.awt.*;
+import java.awt.image.*;
+
+import javax.swing.*;
+
+import com.apo45ty.minefront.graphics.*;
+import com.apo45ty.minefront.input.*;
+
+public class Display extends Canvas implements Runnable {
+	private static final long serialVersionUID = 1L;
+	public static final int WIDTH = 300, HEIGHT = 300;
+
+	private Screen screen;
+	private Game game;
+	private BufferedImage img;
+	private Thread thread;
+	private boolean running = false;
+	private int[] pixels;
+	private InputHandler input;
+	private int newX= 0, newY=0,oldX=0, oldY=0;
+	private int framesAvg ;
+	public Display() {
+		Dimension size =new  Dimension(WIDTH,HEIGHT);
+		setPreferredSize(size);
+		setMaximumSize(size);
+		setMinimumSize(size);
+		screen = new Screen(WIDTH,HEIGHT);
+		game = new Game();
+		img = new BufferedImage(WIDTH,HEIGHT,BufferedImage.TYPE_INT_RGB);
+		pixels = ((DataBufferInt)img.getRaster().getDataBuffer()).getData();
+		
+		input = new InputHandler();
+		addFocusListener(input);
+		addKeyListener(input);
+		addMouseListener(input);
+		addMouseMotionListener(input);
+	}
+	
+	private void start() {
+		if (running)
+			return;
+		running =true;
+		thread = new Thread(this);
+		thread.start();
+		
+		System.out.println("Started new thread...");
+	}
+
+	private void stop() {
+		if (!running)
+			return;
+		running =false;
+		try {
+			thread.join();
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+			System.exit(0);
+		}
+	}
+	
+	@Override
+	public void run() {
+		System.out.println("Thread is beggining...");
+		int frames = 0;
+		double unprocessedSeconds =0 ;
+		long previousTime = System.nanoTime();
+		double secondsPerTick = 1 / 60.0;
+		boolean ticked = false;
+		int tickCount =0;
+		while(running){
+			long currentTime = System.nanoTime();
+			long passedTime=currentTime-previousTime;
+			previousTime = currentTime;
+			unprocessedSeconds+= passedTime / 100000000.0;
+			while(unprocessedSeconds>secondsPerTick){
+				tick();
+				unprocessedSeconds -= secondsPerTick;
+				ticked = true;
+				tickCount ++;
+				if(tickCount % 60 ==0){
+					System.out.println(frames+"fps");
+					framesAvg = (framesAvg+frames)/2;
+					previousTime+=1000;
+					frames =0;
+				}
+			}
+			if(ticked){
+				render();
+				frames++;
+			}
+			render();
+			frames++;
+			
+			newX = InputHandler.mX;
+			newY = InputHandler.mY;
+			if(newX > oldX){
+				//System.out.println("Right");
+				Controller.turnRight=true;
+			} else if(newX == oldX) {
+				//System.out.println("Still");
+				Controller.turnLeft=false;
+				Controller.turnRight=false;
+			} else {
+				//System.out.println("Left");
+				Controller.turnLeft=true;
+			}
+			oldX=newX;
+			if(newY > oldY){
+				//System.out.println("Down");
+			}else if(newY == oldY) {
+				//System.out.println("Still");
+			} else {
+				//System.out.println("Up");
+			}
+			oldY=newY;
+		
+		}
+		
+	}
+	
+	private void render() {
+		BufferStrategy bs = this.getBufferStrategy();
+		if(bs == null){
+			createBufferStrategy(3);
+			return;
+		}
+		screen.render(game);
+		for(int i =0;i<WIDTH*HEIGHT;i++){
+			pixels[i] = screen.pixels[i];
+		}
+		Graphics g = bs.getDrawGraphics();
+		g.drawImage(img, 0, 0, WIDTH+10, HEIGHT+10, null);
+		
+		g.drawString("FPS:"+framesAvg, 0, 10);
+		g.dispose();
+		bs.show();
+	}
+
+	private void tick() {
+		game.tick(input.key);
+	}
+
+	public static void main(String[] args) {
+		BufferedImage cursor = new BufferedImage(16,16,BufferedImage.TYPE_INT_ARGB);
+		Cursor blank = Toolkit.getDefaultToolkit().createCustomCursor(cursor, new Point(0,0), "blank");
+		Display game = new Display();
+		JFrame frame = new JFrame();
+		frame.add(game);
+		frame.pack();
+		frame.getContentPane().setCursor(blank);
+		frame.setResizable(false);
+		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frame.setResizable(false);
+		frame.setVisible(true);
+		
+		System.out.println("Ran Main method...");
+		
+		game.start();
+	}
+
+	
+}
